@@ -1,26 +1,15 @@
 import express from "express";
 import mongoose from "mongoose";
 import serverless from "serverless-http";
+import { connectToDatabase } from "../database/connect.js";
 import Todo from "../models/Todo.js";
 
-export const api = express();
-api.use(express.json());
-
-let connection;
-
-async function connectToDatabase() {
-	if (connection) return connection;
-	if (!process.env.MONGODB_URI) throw new Error("MONGODB_URI is not configured");
-	connection = mongoose.connect(process.env.MONGODB_URI).catch((error) => {
-		connection = undefined;
-		throw error;
-	});
-	return connection;
-}
+const app = express();
+app.use(express.json());
 
 const router = express.Router();
 
-router.get("/hello", (req, res) => res.send("Hello World!"));
+router.get("/health", (req, res) => res.json({ status: "ok" }));
 
 router.post("/todo", async (req, res) => {
 	try {
@@ -74,12 +63,21 @@ router.delete("/todo/:id", async (req, res) => {
 	}
 });
 
-api.use("/api", router);
+// Use /api prefix for all routes
+app.use("/api", router);
 
-export const handler = serverless(api);
+// Netlify uses a serverless function to handle requests 
+export const handler = serverless(app);
 
-if (!process.env.NETLIFY) {
-	const port = 3000;
-	api.use(express.static("frontend"));
-	api.listen(port, () => console.log(`API running at http://localhost:${port}`));
+// During Local Development, Start the express server directly
+if (!process.env.NETLIFY) { 
+	try {
+        const port = 3000;
+	    app.use(express.static("frontend"));
+        await connectToDatabase();
+		app.listen(port, () => console.log(`API running at http://localhost:${port}`));
+	} catch (error) {
+		console.error(`Unable to connect to MongoDB: ${error.message}`);
+		process.exitCode = 1;
+	}
 }
