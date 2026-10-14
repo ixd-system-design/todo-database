@@ -1,0 +1,200 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body { 
+  background: rgb(34,193,195);
+  background: linear-gradient(42deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
+  /* See also: https://cssgradient.io/ */
+  color: white;
+  /* Fonts via Adobe */
+  font-family: highgate,sans-serif;
+  font-weight: 400;  
+  font-style: normal;
+  
+}
+main{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  min-height: 100vh;
+}
+header h2 { 
+  font-size: 3rem;
+  margin: 2rem 0 1rem 0;
+  /* Fonts via Adobe */ 
+  font-family: highgate,sans-serif;
+  font-weight: 900;  
+  font-style: normal;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+} 
+header h2 i{
+  font-size: 1rem;
+}
+header h2 a{
+  font-size: 1.5rem;
+  color: white;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+footer{  
+  width: 90vw;
+  margin-top: auto;
+  padding: 2rem 0; 
+  font-size: 0.8em;
+  color: rgba(255,255,255,0.8);
+}
+footer a{
+  color: white;
+}
+form { 
+  display: flex; 
+  flex-direction: row;
+  align-items: center;
+}  
+input{
+  /* Fonts via Adobe */ 
+  font-family: highgate,sans-serif;
+  font-weight: 400;  
+  font-style: normal;
+  
+  font-size: 1rem;
+  flex-grow: 1;
+  border: none;
+  font-size: 1rem;
+}
+ button { 
+  cursor:pointer;
+  border: none;
+  border-radius: 1rem; 
+  width: 2rem;
+  height: 2rem;
+  margin-left: 0.5rem;
+  background-repeat: no-repeat;
+  background-position: center center; 
+  background-size: 1.5rem;
+  flex-shrink: 0;
+} 
+#notices{
+  display: none;
+  text-align: center;
+  padding: 1rem; 
+  width: 90vw;
+} 
+pre{ 
+  padding: 1rem;
+  background: rgba(0,0,0,0.2); 
+  margin: 1rem auto;
+}
+
+#dataForm{
+  width: 90vw;
+  padding-right: 0.5rem;
+}
+#dataForm input { 
+  border-radius: 1rem;  
+  padding: 1rem;
+}  
+#dataForm button {        
+  width: 3rem;
+  height: 3rem;
+  border-radius: 2rem; 
+} 
+#itemList {
+  list-style: none; 
+  padding: 1rem;
+  margin-top: 0.5rem;
+  border: none;
+  border-radius: 0.5rem;  
+  display: flex;
+  flex-direction: column;
+} 
+.todo{
+  margin: 1rem;
+  padding: 1rem; 
+  border-radius: 1rem;
+  background: rgba(0,0,0,0.1);
+  width: 90vw;
+}
+/* subtle micro-interactions help to add life to the page. */
+.todo:hover{
+  background: rgba(0,0,0,0.2);
+} 
+
+.todo .content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 1rem;
+}
+.todo .content span{ 
+  margin-right: auto;  
+}
+
+
+.todo .content .date{  
+  font-size: 0.8rem;
+  margin: 0.5rem;  
+  /* white-space: nowrap;  */
+  opacity: 0; 
+} 
+/* The date only appears on hover. */
+.todo:hover .content .date{  
+  opacity: 0.5; 
+} 
+ 
+
+/* edit forms remain hidden until revealed via click */
+.todo form{
+  display: none;
+}
+.todo form input {
+  margin-right: auto;
+  border-radius: 5px; 
+  padding: 1rem 1rem; 
+} 
+
+/* SVG images for buttons*/
+button.create {  
+  background-image: url(/assets/create.svg); 
+}
+button.save {  
+  background-image: url(/assets/save.svg); 
+}
+button.cancel {  
+  background-image: url(/assets/undo.svg); 
+}
+button.edit { 
+  background-image: url(/assets/edit.svg);
+}
+button.delete { 
+  background-image: url(/assets/delete.svg); 
+} 
+
+/* button hover states */
+.create:hover, .save:hover, .edit:hover{
+  background-color: lightgreen;
+} 
+.cancel:hover {
+  background-color: yellow;
+}
+.delete:hover{
+  background-color: lightcoral;
+}
+
+/* Responsive layout with media queries */
+
+@media (min-width:961px)  { 
+  #dataForm, .todo, footer { width: 70vw }
+} 
+@media (min-width:1281px) { 
+  #dataForm, .todo, footer { width: 50vw }  
+} 
+
+ 

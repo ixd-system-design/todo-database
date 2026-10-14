@@ -1,0 +1,12 @@
+{
+  "type": "module",
+  "dependencies": {
+    "express": "^5.3.0",
+    "mongoose": "^9.11.2",
+    "serverless-http": "^4.0.0"
+  },
+  "scripts": {
+    "dev": "node --env-file=.env backend/functions/api.js",
+    "test": "node --test"
+  }
+}

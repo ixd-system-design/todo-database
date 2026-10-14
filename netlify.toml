@@ -1,0 +1,16 @@
+# Configure Netlify to publish the static assets from the frontend folder
+[build]
+  publish = "frontend"
+
+# Configure Netlify to deploy files in the backend folder as serverless functions
+[functions]
+  directory = "backend/functions"
+  external_node_modules = ["express"]
+  node_bundler = "esbuild"
+
+# Setup routing for API endpoints to be handled by the serverless function
+[[redirects]]
+  force = true
+  from = "/api/*"
+  status = 200
+  to = "/.netlify/functions/api/:splat"

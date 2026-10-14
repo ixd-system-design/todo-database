@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+
+<head>
+  <title>TODO</title>
+
+  <link
+    rel="icon"
+    type="image/png"
+    href="favicon.png"
+  />
+  <!-- Fonts via Adobe -->
+  <link
+    rel="stylesheet"
+    href="https://use.typekit.net/gsh0vna.css"
+  />
+  <link
+    rel="stylesheet"
+    href="styles.css"
+    type="text/css"
+  />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+</head>
+
+<body>
+  <main>
+    <header>
+      <h2>
+        <span class="title">TODO</span>
+        <i>with</i>
+        <a
+          target="_blank"
+          href="https://www.mongodb.com/products/platform/atlas-database"
+        >
+          <img
+            width="150"
+            src="./assets/mongo.svg"
+            alt="MongoDB"
+          />
+        </a> 
+      </h2>
+    </header>
+    <!-- Here is the input form for new TODO items. JavaScript will listen for submissions on it -->
+    <form
+      id="dataForm"
+      autocomplete="off"
+    >
+      <input
+        id="textInput"
+        type="text"
+        name="content"
+        autocomplete="false"
+      />
+      <button class="create"></button>
+    </form>
+    <ul id="itemList">
+      <!-- TODO List will be added here by JavaScript -->
+    </ul>
+    <section id="notices" role="alert">
+      <p>Unable to load todos. Please try again.</p>
+    </section>
+    <footer>
+      <p>
+        TODO list app created by
+        <a href="https://nsitu.ca">Harold Sikkema</a> in the context of Systems
+        Design (Databases and Dynamic Data) in the
+        <a href="https://ixd.sheridancollege.ca/">Interaction Design Program at Sheridan College</a>. This app uses <a
+          href="https://www.mongodb.com/cloud/atlas/"
+        >MongoDB Atlas</a> to persist a collection of TODO items. It communicates with MongoDB using <a
+          href="https://mongoosejs.com/"
+        >Mongoose</a> via a REST API built with <a href="https://expressjs.com/">Express</a>. API endpoints illustrate
+        a mapping of <a href="https://www.mongodb.com/docs/manual/crud/">CRUD</a> operations onto <a
+          href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods"
+        >HTTP Verbs</a>. Data storage is
+        handled on the frontend via a set of functions: <i>createData</i>, <i>readData</i>,
+        <i>updateData</i>, <i>deleteData</i>, as per the the acronym
+        <a href="https://developer.mozilla.org/en-US/docs/Glossary/CRUD">CRUD</a>. To keep things modular, functions are
+        imported from a separate
+        <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules">module</a>, <i>crud.js</i>
+      </p>
+    </footer>
+  </main>
+
+  <script
+    src="script.js"
+    type="module"
+  ></script>
+</body>
