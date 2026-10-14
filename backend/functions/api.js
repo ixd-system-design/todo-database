@@ -71,13 +71,15 @@ export const handler = serverless(app);
 
 // During Local Development, Start the express server directly
 if (!process.env.NETLIFY) { 
-	try {
-        const port = 3000;
-	    app.use(express.static("frontend"));
-        await connectToDatabase();
-		app.listen(port, () => console.log(`API running at http://localhost:${port}`));
-	} catch (error) {
-		console.error(`Unable to connect to MongoDB: ${error.message}`);
-		process.exitCode = 1;
-	}
+	const port = 3000;
+	app.use(express.static("frontend"));
+
+	connectToDatabase()
+		.then(() => {
+			app.listen(port, () => console.log(`API running at http://localhost:${port}`));
+		})
+		.catch((error) => {
+			console.error(`Unable to connect to MongoDB: ${error.message}`);
+			process.exitCode = 1;
+		});
 }
